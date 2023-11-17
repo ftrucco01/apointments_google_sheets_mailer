@@ -22,7 +22,7 @@ class AppointmentHandler {
             try {
                 // Retrieve form data                
                 $name = $_POST['name'] ?? '';
-                $origin = $_POST['origin'] ?? '';
+                $origin = $this->getOriginDisplay();
                 $registration = !empty($_POST['registration']) ? $_POST['registration'] : 'N/A';
                 $email = $_POST['email'] ?? '';
                 $checkup = $_POST['checkup'] ?? '';
@@ -64,6 +64,17 @@ class AppointmentHandler {
         }
     }
 
+    private function getOriginDisplay()
+    {
+        $origin = $_POST['origin'] ?? '';
+
+        if ($origin === 'internal') {
+            return 'Interno';
+        } elseif ($origin === 'external') {
+            return 'Externo';
+        }
+    }
+
     private function getCheckoupDisplay(string $checkup)
     {
         $checkupDisplay = '';
@@ -75,7 +86,6 @@ class AppointmentHandler {
         
         return $checkupDisplay;
     }
-
 }
 
 // Usage

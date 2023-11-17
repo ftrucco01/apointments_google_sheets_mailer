@@ -48,4 +48,11 @@ $(document).ready(function(){
 
     populateAppointmentTimes($('#checkup').val());
 
+    $("#date").datepicker({
+        beforeShowDay: function(date) {
+          var day = date.getDay();
+          return [(day != 0), '']; // Deshabilita los domingos
+        }
+      });
+
 });
